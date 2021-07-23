@@ -19,11 +19,10 @@ template, please check and copy release automation flow.
 It's important to manage release workflow and sync reviewdog version for all
 reviewdog actions.
 
-This repo contains a sample action to run [misspell](https://github.com/client9/misspell).
+This repo contains a action to run [pylint](https://pypi.org/project/pylint).
 
 ## Input
 
-<!-- TODO: update -->
 ```yaml
 inputs:
   github_token:
@@ -52,22 +51,20 @@ inputs:
   reviewdog_flags:
     description: 'Additional reviewdog flags'
     default: ''
-  ### Flags for <linter-name> ###
-  locale:
-    description: '-locale flag of misspell. (US/UK)'
-    default: ''
+  ### Flags for pylint ###
+  config:
+    description: '-location of .pylinrc configuration'
+    default: '.pylintrc'
 ```
 
 ## Usage
-<!-- TODO: update. replace `template` with the linter name -->
 
 ```yaml
 name: reviewdog
 on: [pull_request]
 jobs:
-  # TODO: change `linter_name`.
-  linter_name:
-    name: runner / <linter-name>
+  pylint:
+    name: runner /pylint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
