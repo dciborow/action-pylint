@@ -13,7 +13,7 @@ echo "[action-flake8] Installing reviewdog..."
 wget -O - -q https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b /tmp "${REVIEWDOG_VERSION}"
 
 if [[ "$(which pylint)" == "" ]]; then
-  echo "[action-flake8] Installing pylint package..."
+  echo "[action-pylint] Installing pylint package..."
   python -m pip install --upgrade pylint
 fi
 echo "[action-pylint] pylint version:"
