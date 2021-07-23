@@ -7,7 +7,7 @@ fi
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
-pylint --rcfile="${INPUT_CONFIG}" . \
+pylint --rcfile=.pylintrc . \
   | reviewdog -efm="%f:%l:%c: %m" \
       -name="linter-name (pylint)" \
       -reporter="${INPUT_REPORTER:-github-pr-check}" \
