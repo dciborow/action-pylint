@@ -1,6 +1,6 @@
-name: 'TODO: Run <linter-name> with reviewdog'
-description: 'TODO: 🐶 Run <linter-name> with reviewdog on pull requests to improve code review experience.'
-author: 'TODO: <your-name>'
+name: 'Run Pylint with reviewdog'
+description: '🐶 Run Pylint with reviewdog on pull requests to improve code review experience.'
+author: 'dciborow'
 inputs:
   github_token:
     description: 'GITHUB_TOKEN'
@@ -33,8 +33,20 @@ inputs:
     description: '-locale flag of misspell. (US/UK)'
     default: ''
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "composite"
+  steps:
+    - run: $GITHUB_ACTION_PATH/entrypoint.sh
+      shell: bash
+      env:
+        INPUT_WORKDIR: ${{ inputs.workdir }}
+        INPUT_FLAKE8_ARGS: ${{ inputs.flake8_Args }}
+        INPUT_GITHUB_TOKEN: ${{ inputs.github_token }}
+        INPUT_TOOL_NAME: ${{ inputs.tool_name }}
+        INPUT_LEVEL: ${{ inputs.level }}
+        INPUT_REPORTER: ${{ inputs.reporter }}
+        INPUT_FILTER_MODE: ${{ inputs.filter_mode }}
+        INPUT_FAIL_ON_ERROR: ${{ inputs.fail_on_error }}
+        INPUT_REVIEWDOG_FLAGS: ${{ inputs.reviewdog_flags }}
 
 # Ref: https://haya14busa.github.io/github-action-brandings/
 # TODO: update branding if you want.
