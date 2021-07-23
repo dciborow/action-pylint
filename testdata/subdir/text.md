@@ -1,2 +1,3 @@
-Determinisitic result is important!
-
+def void_return():
+  print("HelloWorld")
+  return
