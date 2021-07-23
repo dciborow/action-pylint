@@ -47,7 +47,7 @@ name: reviewdog
 on: [pull_request]
 jobs:
   pylint:
-    name: runner /pylint
+    name: runner / pylint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
