@@ -38,10 +38,6 @@ inputs:
   reviewdog_flags:
     description: 'Additional reviewdog flags'
     default: ''
-  ### Flags for pylint ###
-  config:
-    description: '-location of .pylinrc configuration'
-    default: '.pylintrc'
 ```
 
 ## Usage
