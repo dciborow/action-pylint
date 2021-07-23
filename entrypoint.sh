@@ -9,7 +9,7 @@ export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 export REVIEWDOG_VERSION=v0.13.0
 
-echo "[action-flake8] Installing reviewdog..."
+echo "[action-pylint] Installing reviewdog..."
 wget -O - -q https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b /tmp "${REVIEWDOG_VERSION}"
 
 if [[ "$(which pylint)" == "" ]]; then
