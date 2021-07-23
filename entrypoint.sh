@@ -21,7 +21,7 @@ pylint --version
 
 echo "[action-pylint] Checking python code with the pylint linter and reviewdog..."
 exit_val="0"
-pylint --rcfile ../.pylintrc . 2>&1 | # Removes ansi codes see https://github.com/reviewdog/errorformat/issues/51
+pylint --rcfile ../.pylintrc -s n . 2>&1 | # Removes ansi codes see https://github.com/reviewdog/errorformat/issues/51
   /tmp/reviewdog -efm="%f:%l:%c: %m" \
     -name="${INPUT_TOOL_NAME}" \
     -reporter="${INPUT_REPORTER}" \
