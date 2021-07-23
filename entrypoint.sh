@@ -2,7 +2,7 @@
 set -eu # Increase bash strictness
 
 if [[ -n "${GITHUB_WORKSPACE}" ]]; then
-  cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" || exit
+  cd "${GITHUB_WORKSPACE}" || exit
 fi
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
@@ -21,7 +21,7 @@ pylint --version
 
 echo "[action-pylint] Checking python code with the pylint linter and reviewdog..."
 exit_val="0"
-pylint --rcfile ../.pylintrc -s n . 2>&1 | # Removes ansi codes see https://github.com/reviewdog/errorformat/issues/51
+pylint --rcfile ../.pylintrc -s n ${INPUT_WORKDIR} 2>&1 | # Removes ansi codes see https://github.com/reviewdog/errorformat/issues/51
   /tmp/reviewdog -efm="%f:%l:%c: %m" \
     -name="${INPUT_TOOL_NAME}" \
     -reporter="${INPUT_REPORTER}" \
