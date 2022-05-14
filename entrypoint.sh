@@ -29,6 +29,9 @@ fi
 
 echo "[action-pylint] Checking python code with the pylint linter and reviewdog..."
 exit_val="0"
+
+echo "pylint \"${rcfile_option}\" --score n ${INPUT_PYLINT_ARGS}"
+
 pylint "${rcfile_option}" --score n ${INPUT_PYLINT_ARGS} 2>&1
 
 #  | # Removes ansi codes see https://github.com/reviewdog/errorformat/issues/51
