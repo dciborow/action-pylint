@@ -29,14 +29,16 @@ fi
 
 echo "[action-pylint] Checking python code with the pylint linter and reviewdog..."
 exit_val="0"
-pylint "${rcfile_option}" --score n ${INPUT_PYLINT_ARGS} 2>&1 | # Removes ansi codes see https://github.com/reviewdog/errorformat/issues/51
-  /tmp/reviewdog -efm="%f:%l:%c: %m" \
-    -name="${INPUT_TOOL_NAME}" \
-    -reporter="${INPUT_REPORTER}" \
-    -filter-mode="${INPUT_FILTER_MODE}" \
-    -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
-    -level="${INPUT_LEVEL}" \
-    ${INPUT_REVIEWDOG_FLAGS} || exit_val="$?"
+pylint "${rcfile_option}" --score n ${INPUT_PYLINT_ARGS} 2>&1
+
+#  | # Removes ansi codes see https://github.com/reviewdog/errorformat/issues/51
+#   /tmp/reviewdog -efm="%f:%l:%c: %m" \
+#     -name="${INPUT_TOOL_NAME}" \
+#     -reporter="${INPUT_REPORTER}" \
+#     -filter-mode="${INPUT_FILTER_MODE}" \
+#     -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
+#     -level="${INPUT_LEVEL}" \
+#     ${INPUT_REVIEWDOG_FLAGS} || exit_val="$?"
 
 echo "[action-pylint] Clean up reviewdog..."
 rm /tmp/reviewdog
