@@ -1,6 +1,5 @@
 #!/bin/bash
 set -eu # Increase bash strictness
-set -o pipefail
 shopt -s globstar # Enable globstar
 
 if [[ -n "${GITHUB_WORKSPACE}" ]]; then
