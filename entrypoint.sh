@@ -30,7 +30,7 @@ fi
 echo "[action-pylint] Checking python code with the pylint linter and reviewdog..."
 exit_val="0"
 
-echo "pylint \"${rcfile_option}\" --score n ${INPUT_PYLINT_ARGS}"
+echo "pylint ${rcfile_option} --score n ${INPUT_PYLINT_ARGS}"
 
 pylint ${rcfile_option} --score n ${INPUT_PYLINT_ARGS} 2>&1
 
