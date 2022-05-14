@@ -21,14 +21,18 @@ inputs:
     description: "Working directory relative to the root directory."
     required: false
     default: "."
+  glob_pattern:
+    description: "Glob pattern of the files to lint"
+    required: false
+    default: "."
   pylint_rc:
     description: "Path to the .pylintrc configuration file. pylint automatically searches for it if not provided."
     required: false
     default: ""
   pylint_args:
-    description: "Args (including the path) provided to pylint."
+    description: "Args provided to pylint."
     required: false
-    default: "."
+    default: ""
   ### Flags for reviewdog ###
   tool_name:
     description: "Tool name to use for reviewdog reporter."
@@ -79,6 +83,7 @@ jobs:
           # Change reporter level if you need.
           # GitHub Status Check won't become failure with warning.
           level: warning
+          glob_pattern: "**/*.py"
 ```
 
 ## Development
