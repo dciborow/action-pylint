@@ -1,6 +1,7 @@
 #!/bin/bash
 set -eu # Increase bash strictness
 set -o pipefail
+shopt -s globstar # Enable globstar
 
 if [[ -n "${GITHUB_WORKSPACE}" ]]; then
   cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" || exit
@@ -30,9 +31,7 @@ fi
 echo "[action-pylint] Checking python code with the pylint linter and reviewdog..."
 exit_val="0"
 
-echo "pylint ${rcfile_option} --score n ${INPUT_PYLINT_ARGS}"
-
-pylint ${rcfile_option} --score n ${INPUT_PYLINT_ARGS} 2>&1
+pylint --score n ${rcfile_option} ${INPUT_PYLINT_ARGS} ${INPUT_GLOB_PATTERN} 2>&1
 
 #  | # Removes ansi codes see https://github.com/reviewdog/errorformat/issues/51
 #   /tmp/reviewdog -efm="%f:%l:%c: %m" \

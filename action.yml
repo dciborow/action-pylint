@@ -10,14 +10,18 @@ inputs:
     description: "Working directory relative to the root directory."
     required: false
     default: "."
+  glob_pattern:
+    description: "Glob pattern of the files to lint"
+    required: false
+    default: "."
   pylint_rc:
     description: "Path to the .pylintrc configuration file. pylint automatically searches for it if not provided."
     required: false
     default: ""
   pylint_args:
-    description: "Args (including the path) provided to pylint."
+    description: "Args provided to pylint."
     required: false
-    default: "."
+    default: ""
   ### Flags for reviewdog ###
   tool_name:
     description: "Tool name to use for reviewdog reporter."
@@ -63,6 +67,7 @@ runs:
         INPUT_REVIEWDOG_FLAGS: ${{ inputs.reviewdog_flags }}
         INPUT_PYLINT_RC: ${{ inputs.pylint_rc }}
         INPUT_PYLINT_ARGS: ${{ inputs.pylint_args }}
+        INPUT_GLOB_PATTERN: ${{ inputs.glob_pattern }}
 
 # Ref: https://haya14busa.github.io/github-action-brandings/
 branding:
