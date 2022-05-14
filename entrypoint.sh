@@ -20,7 +20,7 @@ fi
 echo "[action-pylint] pylint version:"
 pylint --version
 
-if [[ "${INPUT_PYLINT_RC}" == ""]]; then
+if [[ "$INPUT_PYLINT_RC" == "" ]]; then
   # Do not supply the rcfile option if it is not provided
   rcfile_option=""
 else
