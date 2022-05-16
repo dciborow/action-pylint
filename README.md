@@ -1,4 +1,5 @@
 # action-pylint
+
 [![Test](https://github.com/dciborow/action-pylint/workflows/Test/badge.svg)](https://github.com/dciborow/action-pylint/actions?query=workflow%3ATest)
 [![reviewdog](https://github.com/dciborow/action-pylint/workflows/reviewdog/badge.svg)](https://github.com/dciborow/action-pylint/actions?query=workflow%3Areviewdog)
 [![depup](https://github.com/dciborow/action-pylint/workflows/depup/badge.svg)](https://github.com/dciborow/action-pylint/actions?query=workflow%3Adepup)
@@ -13,31 +14,54 @@ This repo contains a action to run [pylint](https://pypi.org/project/pylint).
 ```yaml
 inputs:
   github_token:
-    description: 'GITHUB_TOKEN'
-    default: '${{ github.token }}'
+    description: "GITHUB_TOKEN"
+    required: true
+    default: "${{ github.token }}"
   workdir:
-    description: 'Working directory relative to the root directory.'
-    default: '.'
+    description: "Working directory relative to the root directory."
+    required: false
+    default: "."
+  glob_pattern:
+    description: "Glob pattern of the files to lint"
+    required: false
+    default: "."
+  pylint_rc:
+    description: "Path to the .pylintrc configuration file. pylint automatically searches for it if not provided."
+    required: false
+    default: ""
+  pylint_args:
+    description: "Args provided to pylint."
+    required: false
+    default: ""
   ### Flags for reviewdog ###
+  tool_name:
+    description: "Tool name to use for reviewdog reporter."
+    required: false
+    default: "pylint"
   level:
-    description: 'Report level for reviewdog [info,warning,error]'
-    default: 'error'
+    description: "Report level for reviewdog [info,warning,error]"
+    required: false
+    default: "error"
   reporter:
-    description: 'Reporter of reviewdog command [github-pr-check,github-check,github-pr-review].'
-    default: 'github-pr-check'
+    description: "Reporter of reviewdog command [github-pr-check,github-pr-review]."
+    required: false
+    default: "github-pr-check"
   filter_mode:
     description: |
       Filtering mode for the reviewdog command [added,diff_context,file,nofilter].
       Default is added.
-    default: 'added'
+    required: false
+    default: "added"
   fail_on_error:
     description: |
       Exit code for reviewdog when errors are found [true,false]
       Default is `false`.
-    default: 'false'
+    required: false
+    default: "false"
   reviewdog_flags:
-    description: 'Additional reviewdog flags'
-    default: ''
+    description: "Additional reviewdog flags"
+    required: false
+    default: ""
 ```
 
 ## Usage
@@ -59,6 +83,7 @@ jobs:
           # Change reporter level if you need.
           # GitHub Status Check won't become failure with warning.
           level: warning
+          glob_pattern: "**/*.py"
 ```
 
 ## Development
@@ -88,6 +113,7 @@ Supported linters:
 - [reviewdog/action-misspell](https://github.com/reviewdog/action-misspell)
 
 ### Dependencies Update Automation
+
 This repository uses [reviewdog/action-depup](https://github.com/reviewdog/action-depup) to update
 reviewdog version.
 
