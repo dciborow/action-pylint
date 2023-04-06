@@ -35,7 +35,7 @@ echo "INPUT_PYLINT_ARGS=${INPUT_PYLINT_ARGS}"
 echo "INPUT_GLOB_PATTERN=${INPUT_GLOB_PATTERN}"
 
 ls -alt
-cmd_line='pylint --score n ${rcfile_option} ${INPUT_PYLINT_ARGS} ${INPUT_GLOB_PATTERN} 2>&1'
+cmd_line="pylint --score n ${rcfile_option} ${INPUT_PYLINT_ARGS} ${INPUT_GLOB_PATTERN} 2>&1"
 echo ${cmd_line}
 
 pylint --score n ${rcfile_option} ${INPUT_PYLINT_ARGS} ${INPUT_GLOB_PATTERN} 2>&1
