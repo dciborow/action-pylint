@@ -30,6 +30,12 @@ fi
 echo "[action-pylint] Checking python code with the pylint linter and reviewdog..."
 exit_val="0"
 
+echo "rcfile_option=${rcfile_option}"
+echo "INPUT_PYLINT_ARGS=${INPUT_PYLINT_ARGS}"
+echo "INPUT_GLOB_PATTERN=${INPUT_GLOB_PATTERN}"
+
+pylint --score n ${rcfile_option} ${INPUT_PYLINT_ARGS} ${INPUT_GLOB_PATTERN} 2>&1
+
 pylint --score n ${rcfile_option} ${INPUT_PYLINT_ARGS} ${INPUT_GLOB_PATTERN} 2>&1 | # Removes ansi codes see https://github.com/reviewdog/errorformat/issues/51
   /tmp/reviewdog -efm="%f:%l:%c: %m" \
     -name="${INPUT_TOOL_NAME}" \
