@@ -13,7 +13,7 @@ inputs:
   glob_pattern:
     description: "Glob pattern of the files to lint"
     required: false
-    default: "."
+    default: "**/*.py"
   pylint_rc:
     description: "Path to the .pylintrc configuration file. pylint automatically searches for it if not provided."
     required: false
