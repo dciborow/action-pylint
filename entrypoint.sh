@@ -20,17 +20,15 @@ fi
 echo "[action-pylint] pylint version:"
 pylint --version
 
-if [[ "$INPUT_PYLINT_RC" == "" ]]; then
-  # Do not supply the rcfile option if it is not provided
-  rcfile_option=""
-else
-  rcfile_option="--rcfile=\"${INPUT_PYLINT_RC}\""
+RCFILE_OPTION=""
+if [[ "$INPUT_PYLINT_RC" != "" ]]; then
+  RCFILE_OPTION="--rcfile=${INPUT_PYLINT_RC}"
 fi
 
 echo "[action-pylint] Checking python code with the pylint linter and reviewdog..."
 exit_val="0"
 
-pylint --score n ${rcfile_option} ${INPUT_PYLINT_ARGS} ${INPUT_GLOB_PATTERN} 2>&1 | # Removes ansi codes see https://github.com/reviewdog/errorformat/issues/51
+pylint --score n ${RCFILE_OPTION} ${INPUT_PYLINT_ARGS} ${INPUT_GLOB_PATTERN} 2>&1 | # Removes ansi codes see https://github.com/reviewdog/errorformat/issues/51
   /tmp/reviewdog -efm="%f:%l:%c: %m" \
     -name="${INPUT_TOOL_NAME}" \
     -reporter="${INPUT_REPORTER}" \
