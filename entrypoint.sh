@@ -20,11 +20,9 @@ fi
 echo "[action-pylint] pylint version:"
 pylint --version
 
-if [[ "$INPUT_PYLINT_RC" == "" ]]; then
-  # Do not supply the rcfile option if it is not provided
-  rcfile_option=""
-else
-  rcfile_option="--rcfile=\"${INPUT_PYLINT_RC}\""
+rcfile_option=""
+if [[ "$INPUT_PYLINT_RC" != "" ]]; then
+  rcfile_option="--rcfile=${INPUT_PYLINT_RC}"
 fi
 
 echo "[action-pylint] Checking python code with the pylint linter and reviewdog..."
