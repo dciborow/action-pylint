@@ -62,6 +62,10 @@ inputs:
     description: "Additional reviewdog flags"
     required: false
     default: ""
+  resolve:
+    description: "Automatically resolve/remove outdated comments when issues are fixed (requires reviewdog v0.15.0+)."
+    required: false
+    default: "true"
 ```
 
 ## Usage
@@ -100,6 +104,20 @@ This action updates major/minor release tags on a tag push. e.g. Update v1 and v
 ref: https://help.github.com/en/articles/about-actions#versioning-your-action
 
 ### Lint - reviewdog integration
+
+### Resolving Outdated Comments
+
+This action supports automatic resolution/removal of outdated review comments when issues are fixed, using reviewdog's `-resolve=true` flag (requires reviewdog v0.15.0+). This keeps your PR conversations clean. You can control this with the `resolve` input (default: `true`).
+
+Example usage:
+
+```yaml
+      - uses: dciborow/action-pylint@0.1.0
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          resolve: true
+```
 
 This reviewdog action template itself is integrated with reviewdog to run lints
 which is useful for Docker container based actions.
