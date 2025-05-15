@@ -51,6 +51,10 @@ inputs:
     description: "Additional reviewdog flags"
     required: false
     default: ""
+  resolve:
+    description: "Automatically resolve/remove outdated comments when issues are fixed (requires reviewdog v0.15.0+)."
+    required: false
+    default: "true"
 runs:
   using: "composite"
   steps:
@@ -68,6 +72,7 @@ runs:
         INPUT_PYLINT_RC: ${{ inputs.pylint_rc }}
         INPUT_PYLINT_ARGS: ${{ inputs.pylint_args }}
         INPUT_GLOB_PATTERN: ${{ inputs.glob_pattern }}
+        INPUT_RESOLVE: ${{ inputs.resolve }}
 
 # Ref: https://haya14busa.github.io/github-action-brandings/
 branding:
